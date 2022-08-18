@@ -1,3 +1,7 @@
 class Plan < ApplicationRecord
-  belongs_to :admin
+
+  #belongs_to :user
+
+  has_many :features
+
 end

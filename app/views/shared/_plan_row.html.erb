@@ -1,0 +1,20 @@
+
+
+<% if current_user&.type == 'Admin' %>
+
+  <tr id="planRow_<%= plan.id %>">
+        <td><%= plan.name %></td>
+        <td><%= plan.monthly_fee %></td>
+        <td><%= link_to 'Show', plan %></td>
+        <td><%= link_to 'Edit', edit_plan_path(plan) %></td>
+        <td><%= link_to 'Destroy', plan, method: :delete, data: { confirm: 'Are you sure?' }, class: "remove_plan", remote: true%></td>
+      </tr>
+
+<% else %>
+  <tr id="planRow_<%= plan.id %>">
+        <td><%= plan.name %></td>
+        <td><%= plan.monthly_fee %></td>
+        <td><%= link_to 'Subscribe', plan %></td>
+        <td><%= link_to 'Show Features', plan %></td>
+        </tr>
+<%end%>
