@@ -7,4 +7,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
          #has_many :plans
+
+         has_many :plans
+         has_many :plan, through: :subscribes
 end

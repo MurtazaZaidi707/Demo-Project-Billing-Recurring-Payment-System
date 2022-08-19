@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
+  get 'subscribes/index'
   get 'features/index'
   get 'plans/index'
   #get 'home/index'
   devise_for :users
-  #resources :plans
+  resources :subscribes
 
   resources :plans do
     resources :features
