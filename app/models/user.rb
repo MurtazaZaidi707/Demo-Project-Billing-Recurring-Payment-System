@@ -10,4 +10,6 @@ class User < ApplicationRecord
 
          has_many :plans
          has_many :plan, through: :subscribes
+
+         has_many :usages
 end

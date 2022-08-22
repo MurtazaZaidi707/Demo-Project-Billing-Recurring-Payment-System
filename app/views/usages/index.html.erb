@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Usages</h1>
+
+<table class="class= table table-striped">
+  <thead>
+    <tr>
+      <th>User_id</th>
+      <th>Units_consumed</th>
+      <th>total_units</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody id="plansTable w-30">
+    <% @usages.each do |usage| %>
+      <tr id="planRow_<%=usage.id %>">
+        <td><%= usage.user_id %></td>
+        <td><%= usage.unit_consumed %></td>
+        <td><%= usage.feature.max_unit_limit %></td>
+        <td><%= link_to 'Show Feature', usage %></td>
+        <td><%= link_to 'Edit' %></td>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

@@ -46,6 +46,7 @@
         <% if current_user&.type == 'Admin' %>
           <li class="nav-item">
            <%= link_to 'Buyer Accounts', subscribes_index_path , class: "navbar-brand" %>
+           <%= link_to 'Buyer Usages', usages_index_path , class: "navbar-brand" %>
           </li>
         <% end %>
 

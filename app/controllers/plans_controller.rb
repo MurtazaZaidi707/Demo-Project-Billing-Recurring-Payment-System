@@ -1,4 +1,5 @@
 class PlansController < ApplicationController
+
   def index
     @plans = Plan.all
   end
@@ -14,9 +15,6 @@ class PlansController < ApplicationController
   # GET /users/1/edit
   def edit
     @plan = Plan.find(params[:id])
-  end
-
-  def subscribe
   end
 
   def update
