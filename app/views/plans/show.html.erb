@@ -8,7 +8,6 @@
 <p>
   <strong>monthly_fee:</strong>
   <%= @plan.monthly_fee %>
-
 </p>
 
 <h2>Features</h2>
@@ -32,6 +31,11 @@
     <strong>max_unit_limit:</strong>
     <%= feature.max_unit_limit %>
   </p>
+  <% if current_user&.type == 'Admin' %>
+    <%= feature.id %>
+
+  <% end %>
+
 <% end %>
 
 <% if current_user&.type == 'Admin' %>
@@ -56,13 +60,15 @@
     <%= form.label :plan_id %><br>
     <%= form.text_area :plan_id %>
   </p>
+
   <p>
     <%= form.submit %>
   </p>
 <% end %>
 
+
 <%= link_to 'Edit', edit_plan_path(@plan) %> |
-<%= link_to 'Back', plans_path %>
+
 
 
 <% end %>

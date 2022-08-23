@@ -1,14 +1,19 @@
-<h2>Sign up</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<div class="container w-25">
+    <h2>Sign up</h2>
+</div>
+
+<div class="container w-25 shadow-lg">
+
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="feild form-group w-25">
+  <div class="feild form-group">
     <%= f.label :email %><br />
     <%= f.email_field :email, class:"form-control", autofocus: true, autocomplete: "email" %>
   </div>
 
-  <div class="feild form-group w-25">
+  <div class="feild form-group">
     <%= f.label :password %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
@@ -16,7 +21,7 @@
     <%= f.password_field :password, class:"form-control", autocomplete: "new-password" %>
   </div>
 
-  <div class="feild form-group w-25">
+  <div class="feild form-group">
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, class:"form-control", autocomplete: "new-password" %>
   </div>
@@ -27,3 +32,6 @@
 <% end %>
 
 <%= render "devise/shared/links" %>
+
+
+</div>

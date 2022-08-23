@@ -1,17 +1,20 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Plans</h1>
+<div class="container">
+  <h1>Plans</h1>
+</div>
 
-<table class="class= table table-striped">
+<table class="container table table-striped shadow-lg">
   <thead>
     <tr>
+      <th>Plan_id</th>
       <th>Name</th>
       <th>Monthly fee</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
-  <tbody id="plansTable w-30">
+  <tbody id="plansTable w-30 container">
     <% @plans.each do |plan| %>
       <%= render 'shared/plan_row', plan: plan %>
     <% end %>
@@ -19,6 +22,9 @@
 </table>
 
 <br>
-<% if current_user&.type == 'Admin' %>
-  <%= link_to 'New plan', new_usage_path, id: "new_link"%>
-<% end %>
+
+<div class="container">
+  <% if current_user&.type == 'Admin' %>
+    <%= link_to 'New plan', new_plan_path, id: "new_link"%>
+  <% end %>
+</div>

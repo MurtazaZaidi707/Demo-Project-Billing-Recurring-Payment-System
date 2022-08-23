@@ -1,15 +1,19 @@
-class PlansController < ApplicationController
+# frozen_string_literal: true
 
+class PlansController < ApplicationController
   def index
     @plans = Plan.all
   end
 
   def new
     @plan = Plan.new
+    # @temp = params[:usage_id]
+    # session[:passed_variable] = @temp
   end
 
   def show
     @plan = Plan.find(params[:id])
+    # @temp = session[:passed_variable]
   end
 
   # GET /users/1/edit
@@ -50,7 +54,6 @@ class PlansController < ApplicationController
   private
 
   def plan_params
-      params.require(:plan).permit(:monthly_fee, :name)
+    params.require(:plan).permit(:monthly_fee, :name)
   end
-
 end

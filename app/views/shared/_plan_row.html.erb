@@ -3,6 +3,7 @@
 <% if current_user&.type == 'Admin' %>
 
   <tr id="planRow_<%= plan.id %>">
+        <td><%= plan.id %></td>
         <td><%= plan.name %></td>
         <td><%= plan.monthly_fee %></td>
         <td><%= link_to 'Show', plan %></td>

@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+<div class="container">
+  <h1>Transactions</h1>
+</div>
+
+<table class="container table table-striped shadow-lg">
+  <thead>
+    <tr>
+      <th>User id</th>
+      <th>Transaction id</th>
+      <th>Transaction date</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody id="transactionusersTable w-30">
+    <% @transactionusers.each do |transaction| %>
+      <tr id="planRow_<%= transaction.id %>">
+        <td><%= transaction.user_id %></td>
+        <td><%= transaction.id %></td>
+        <td><%= transaction.transaction_date %></td>
+        </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddPlanIdToFeatures < ActiveRecord::Migration[6.1]
   def change
     add_column :features, :plan_id, :integer

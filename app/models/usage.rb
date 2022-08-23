@@ -1,5 +1,6 @@
-class Usage < ApplicationRecord
+# frozen_string_literal: true
 
+class Usage < ApplicationRecord
   belongs_to :user
-  has_one :feature
+  belongs_to :feature
 end

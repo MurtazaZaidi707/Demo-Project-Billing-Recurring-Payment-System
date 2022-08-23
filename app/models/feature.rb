@@ -1,4 +1,6 @@
+# frozen_string_literal: true
+
 class Feature < ApplicationRecord
   belongs_to :plan
-  belongs_to :usage
+  has_one :usage, dependent: :destroy
 end

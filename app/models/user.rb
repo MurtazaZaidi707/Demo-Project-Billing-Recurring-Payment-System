@@ -6,10 +6,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-         #has_many :plans
+  # has_many :plans
 
-         has_many :plans
-         has_many :plan, through: :subscribes
+  has_many :plans
+  has_many :plan, through: :subscribes
 
-         has_many :usages
+  has_many :usages
 end
