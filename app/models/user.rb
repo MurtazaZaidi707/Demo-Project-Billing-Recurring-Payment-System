@@ -12,4 +12,5 @@ class User < ApplicationRecord
   has_many :plan, through: :subscribes
 
   has_many :usages
+  has_many :invoices
 end

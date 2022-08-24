@@ -15,7 +15,7 @@ class TransactionusersController < ApplicationController
     @transactionuser = Transactionuser.new(transactionuser_params)
 
     if @transactionuser.save
-      redirect_to transactionusers_path
+      redirect_to new_invoice_path(subscribe_id: @transactionuser.subscribe_id)
     else
       render :new, status: :unprocessable_entity
     end

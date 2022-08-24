@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :subscribes
   resources :usages
   resources :transactionusers
+  resources :invoices
 
   resources :plans do
     resources :features

@@ -3,7 +3,8 @@
 class Subscribe < ApplicationRecord
   belongs_to :user
   belongs_to :plan
-  has_one :transactionusers
+  has_one :transactionuser
+  has_one :invoice
 
   validates :billing_date, presence: true
 

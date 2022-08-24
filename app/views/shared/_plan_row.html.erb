@@ -13,6 +13,7 @@
 
 <% else %>
   <tr id="planRow_<%= plan.id %>">
+        <td><%= plan.id %></td>
         <td><%= plan.name %></td>
         <td><%= plan.monthly_fee %></td>
         <td><%= link_to 'Subscribe', new_subscribe_path(plan_id: plan.id) %></td>

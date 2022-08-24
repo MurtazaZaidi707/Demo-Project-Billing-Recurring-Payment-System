@@ -1,0 +1,44 @@
+<%= form_with(model: @invoice) do |form| %>
+  <% if @invoice.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@invoice.errors.count, "error") %> prohibited this invoice from being saved:</h2>
+
+      <ul>
+        <% @invoice.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <br/>
+  <div class="field">
+    <%= form.label :subscribe_id %>
+    <%= form.text_field :subscribe_id, value: @invoice.subscribe_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.text_field :user_id, value: current_user.id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :usage_id %>
+
+    <% @invoice.subscribe.plan.features.each do |feature| %>
+      <%= form.text_field :usage_id, value: feature.usage.id %>
+    <%end%>
+
+  </div>
+
+  <div class="field">
+    <%= form.label :total_amount %>
+    <% @invoice.subscribe.plan.features.each do |feature| %>
+      <%= form.text_field :total_amount, value: 'Calculating' %>
+    <%end%>
+
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
