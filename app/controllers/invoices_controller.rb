@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class InvoicesController < ApplicationController
   def index
     @invoices = Invoice.all
@@ -23,5 +25,4 @@ class InvoicesController < ApplicationController
   def invoice_params
     params.require(:invoice).permit(:user_id, :subscribe_id, :usage_id, :total_amount)
   end
-
 end

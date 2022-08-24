@@ -33,7 +33,7 @@
   <div class="field">
     <%= form.label :total_amount %>
     <% @invoice.subscribe.plan.features.each do |feature| %>
-      <%= form.text_field :total_amount, value: 'Calculating' %>
+      <%= form.text_field :total_amount, value: feature.usage.unit_consumed * feature.unit_price  %>
     <%end%>
 
   </div>

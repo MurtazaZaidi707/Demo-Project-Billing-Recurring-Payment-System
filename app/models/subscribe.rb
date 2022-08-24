@@ -3,28 +3,22 @@
 class Subscribe < ApplicationRecord
   belongs_to :user
   belongs_to :plan
-  has_one :transactionuser
-  has_one :invoice
+  has_one :transactionusers
+  has_one :invoices
 
-  validates :billing_date, presence: true
-
-  before_validation :ensure_current_date
-  after_validation :validate_date_range
+  before_create :ensure_current_date
 
   private
 
-  def validate_date_range
-    first_date = Date.new(2022, 8, 1)
-    last_date = Date.new(2022, 8, 28)
-
-    if billing_date? && !(billing_date >= first_date && billing_date <= last_date)
-      errors.add(:billing_date, 'Is not in billing range 1-28')
-    end
-  end
-
   def ensure_current_date
-    last_date = Date.new(2022, 8, 20)
+    last_date = Date.new(Date.today.year, Date.today.month, 28)
 
-    self.billing_date = last_date if Date.today > last_date
+    self.billing_date = if Date.today.day in 1...28
+                          Date.today
+                        else
+                          last_date
+                        end
+
+    # self.billing_date = last_date if Date.today > last_date
   end
 end
