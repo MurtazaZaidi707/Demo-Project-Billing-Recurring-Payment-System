@@ -1,0 +1,26 @@
+<%= form_with(model: @usage) do |form| %>
+  <br/>
+  <div class="field">
+    <%= form.label :units_consumed %>
+    <%= form.number_field :unit_consumed %>
+  </div>
+
+  <div class="field">
+    <%= form.label :total_units %>
+    <%= form.number_field :total_units %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.text_field :user_id, value: current_user.id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :feature_id %>
+    <%= form.text_field :feature_id, value: params[:feature_id] %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
