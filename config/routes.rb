@@ -1,10 +1,8 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  get 'usages/index'
-  get 'subscribes/index'
-  get 'features/index'
-  get 'plans/index'
+
+  #get 'plans/index'
   # get 'home/index'
   devise_for :users
   resources :subscribes
@@ -13,7 +11,10 @@ Rails.application.routes.draw do
   resources :invoices
 
   resources :plans do
-    resources :features
+    resources :features do
+      get :usage
+      post :usage
+    end
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

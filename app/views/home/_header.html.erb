@@ -13,7 +13,7 @@
         <% if user_signed_in? %>
 
         <li class="nav-item">
-          <%= link_to 'Plans', plans_index_path, class: "navbar-brand" %>
+          <%= link_to 'Plans', plans_path, class: "navbar-brand" %>
         </li>
 
         </li>
@@ -45,8 +45,8 @@
 
         <% if current_user&.type == 'Admin' %>
           <li class="nav-item">
-           <%= link_to 'Buyer Accounts', subscribes_index_path , class: "navbar-brand" %>
-           <%= link_to 'Buyer Usages', usages_index_path , class: "navbar-brand" %>
+           <%= link_to 'Buyer Accounts', subscribes_path , class: "navbar-brand" %>
+           <%= link_to 'Buyer Usages', usages_path , class: "navbar-brand" %>
           </li>
         <% elsif current_user&.type == 'Buyer' %>
           <li class="nav-item">

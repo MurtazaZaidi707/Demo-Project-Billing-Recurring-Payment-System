@@ -10,6 +10,8 @@
       <th>Invoice id</th>
       <th>Total Units</th>
       <th>Total Amount</th>
+      <th>Unit_consumed</th>
+      <th>Exceeded_Units_Amount</th>
       <th>Billing Date<th>
       <th colspan="3"></th>
     </tr>
@@ -22,7 +24,14 @@
         <td><%= invoice.id %></td>
         <td><%= invoice.usage.total_units %></td>
         <td><%= invoice.total_amount %></td>
-        <td><%= invoice.subscribe.billing_date %></td>
+        <td><%= invoice.usage.unit_consumed %></td>
+        <td>
+          <% if invoice.usage.unit_consumed > invoice.usage.total_units %>
+            <%= (invoice.usage.unit_consumed - invoice.usage.total_units) * invoice.usage.feature.unit_price    %>
+          <%end%>
+        </td>
+
+        <td><%= invoice.subscribe.billing_date  %></td>
         </tr>
     <% end %>
   </tbody>

@@ -33,13 +33,27 @@
   </p>
   <% if current_user&.type == 'Admin' %>
     <%= feature.id %>
-
+    <% @feature = feature %>
+    <%= link_to 'Edit Feature', edit_plan_feature_path(@plan, @feature) %> |
+    <%= link_to 'Delete', plan_feature_path(@plan, @feature), method: :delete, data: {confirm: "Are you sure?"}, remote: true %>
   <% end %>
 
 <% end %>
 
 <% if current_user&.type == 'Admin' %>
-  <%= form_with model: [ @plan, @plan.features.build ] do |form| %>
+  <% @feature = @plan.features.build %>
+  <%= form_with model: [ @plan, @feature ] do |form| %>
+  <% if @feature.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@feature.errors.count, "error") %> prohibited this feature from being saved:</h2>
+
+      <ul>
+        <% @feature.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
   <p>
     <%= form.label :name %><br>
     <%= form.text_field :name %>

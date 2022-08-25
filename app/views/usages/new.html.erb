@@ -18,7 +18,7 @@
 
   <div class="field">
     <%= form.label :total_units %>
-    <%= form.number_field :total_units %>
+    <%= form.number_field :total_units, value: @usage.feature&.max_unit_limit %>
   </div>
 
   <div class="field">

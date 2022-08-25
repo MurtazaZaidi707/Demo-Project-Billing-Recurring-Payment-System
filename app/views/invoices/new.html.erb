@@ -35,7 +35,6 @@
     <% @invoice.subscribe.plan.features.each do |feature| %>
       <%= form.text_field :total_amount, value: feature.usage.unit_consumed * feature.unit_price  %>
     <%end%>
-
   </div>
 
   <div class="actions">
