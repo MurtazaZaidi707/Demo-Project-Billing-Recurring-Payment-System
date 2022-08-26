@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class PlansController < ApplicationController
+
+  before_action :set_feature, only: %i[show edit update destroy]
+
   def index
     @plans = Plan.all
   end
@@ -9,18 +12,12 @@ class PlansController < ApplicationController
     @plan = Plan.new
   end
 
-  def show
-    @plan = Plan.find(params[:id])
-  end
+  def show; end
 
   # GET /users/1/edit
-  def edit
-    @plan = Plan.find(params[:id])
-  end
+  def edit; end
 
   def update
-    @plan = Plan.find(params[:id])
-
     if @plan.update(plan_params)
       redirect_to @plan
     else
@@ -40,7 +37,6 @@ class PlansController < ApplicationController
   end
 
   def destroy
-    @plan = Plan.find(params[:id])
     @plan.destroy
     respond_to do |format|
       format.js
@@ -49,6 +45,10 @@ class PlansController < ApplicationController
   end
 
   private
+
+  def set_feature
+    @plan = Plan.find(params[:id])
+  end
 
   def plan_params
     params.require(:plan).permit(:monthly_fee, :name)

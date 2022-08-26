@@ -21,10 +21,10 @@
       <tr id="planRow_<%=usage.id %>">
         <td><%= usage.user_id %></td>
         <td><%= usage.unit_consumed %></td>
-        <td><%= usage.total_units %></td>
+        <td><%= usage&.feature.max_unit_limit %></td>
         <td>
-          <% if usage.unit_consumed > usage.total_units %>
-            <%=usage.unit_consumed - usage.total_units%>
+          <% if usage.unit_consumed > usage.feature.max_unit_limit %>
+            <%=usage.unit_consumed - usage.feature.max_unit_limit%>
           <%end%>
         </td>
         <td><%= usage.feature.plan_id %></td>
