@@ -2,13 +2,8 @@
   <%= form_with(model: @usage) do |form| %>
   <br/>
   <div class="field md-3">
-    <%= form.label :units_consumed %>
-    <%= form.number_field :unit_consumed %>
-  </div>
-
-  <div class="field md-3">
-    <%= form.label :total_units %>
-    <%= form.number_field :total_units %>
+    <%= form.label :units_consumed%>
+    <%= form.number_field :unit_consumed, { class: "form-control", placeholder: "name" } %>
   </div>
 
   <div class="field md-3">
@@ -17,7 +12,7 @@
   </div>
 
   <div class="field md-3">
-    <%= form.label :feature_id %>
+    <%= form.label :feature_id%>
     <%= form.text_field :feature_id, value: params[:feature_id] %>
   </div>
 

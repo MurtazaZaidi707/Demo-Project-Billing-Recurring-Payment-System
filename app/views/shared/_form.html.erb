@@ -11,17 +11,17 @@
     </div>
   <% end %>
   <br/>
+  <div class="card-body">
   <div class="field mb-3">
-    <%= form.label :monthly_fee %>
-    <%= form.text_field :monthly_fee %>
+    <%= form.label :monthly_fee, { class: "form-label"} %>
+    <%= form.text_field :monthly_fee, { class: "form-control", placeholder: "Monthly Fee" } %>
   </div>
 
   <div class="field mb-3">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= form.label :name, { class: "form-label"} %>
+    <%= form.text_field :name, { class: "form-control", placeholder: "Name" } %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <button type="submit" class="btn btn-primary">Submit</button>
   </div>
 <% end %>

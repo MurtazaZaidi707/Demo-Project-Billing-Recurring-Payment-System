@@ -57,29 +57,27 @@
     </div>
   <% end %>
   <p>
-    <%= form.label :name %><br>
-    <%= form.text_field :name %>
+    <%= form.label :name, { class: "form-label"} %><br>
+    <%= form.text_field :name, { class: "form-control", placeholder: "name" } %>
   </p>
   <p>
-    <%= form.label :code %><br>
-    <%= form.text_area :code %>
+    <%= form.label :code, { class: "form-label"} %><br>
+    <%= form.text_area :code, { class: "form-control", placeholder: "code" } %>
   </p>
   <p>
-    <%= form.label :unit_price %><br>
-    <%= form.text_area :unit_price %>
+    <%= form.label :unit_price, { class: "form-label"} %><br>
+    <%= form.text_area :unit_price, { class: "form-control", placeholder: "unit_price" } %>
   </p>
   <p>
-    <%= form.label :max_unit_limit %><br>
-    <%= form.text_area :max_unit_limit %>
+    <%= form.label :max_unit_limit, { class: "form-label"} %><br>
+    <%= form.text_area :max_unit_limit, { class: "form-control", placeholder: "max_unit_limit" } %>
   </p>
   <p>
-    <%= form.label :plan_id %><br>
-    <%= form.text_area :plan_id %>
+    <%= form.label :plan_id, { class: "form-label"} %><br>
+    <%= form.text_area :plan_id, { class: "form-control", placeholder: "plan_id" } %>
   </p>
 
-  <p>
-    <%= form.submit %>
-  </p>
+  <button type="submit" class="btn btn-primary">Save</button>
 <% end %>
 <%= link_to 'Edit', edit_plan_path(@plan) %>
 <% end %>
