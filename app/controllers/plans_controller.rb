@@ -7,13 +7,10 @@ class PlansController < ApplicationController
 
   def new
     @plan = Plan.new
-    # @temp = params[:usage_id]
-    # session[:passed_variable] = @temp
   end
 
   def show
     @plan = Plan.find(params[:id])
-    # @temp = session[:passed_variable]
   end
 
   # GET /users/1/edit

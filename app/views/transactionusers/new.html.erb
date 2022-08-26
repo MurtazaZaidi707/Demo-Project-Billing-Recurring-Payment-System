@@ -1,4 +1,5 @@
-<%= form_with(model: @transactionuser) do |form| %>
+<div class="container-sm shadow-lg">
+  <%= form_with(model: @transactionuser) do |form| %>
   <% if @transactionuser.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@transactionuser.errors.count, "error") %> prohibited this transactionuser from being saved:</h2>
@@ -30,3 +31,4 @@
     <%= form.submit %>
   </div>
 <% end %>
+</div>

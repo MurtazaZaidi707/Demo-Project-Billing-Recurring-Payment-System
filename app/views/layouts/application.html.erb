@@ -14,7 +14,9 @@
     <%= render 'home/header' %>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-    Currrent User is : <%= current_user&.type %>
+    <div class="container">
+      Currrent User is : <%= current_user&.type %>
+    </div>
     <%= yield %>
   </body>
 </html>

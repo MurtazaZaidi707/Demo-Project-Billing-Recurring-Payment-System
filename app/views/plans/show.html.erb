@@ -1,4 +1,6 @@
-<p id="notice"><%= notice %></p>
+<div class="container-sm shadow-lg">
+
+  <p id="notice"><%= notice %></p>
 
 <p>
   <strong>Name:</strong>
@@ -79,10 +81,7 @@
     <%= form.submit %>
   </p>
 <% end %>
-
-
-<%= link_to 'Edit', edit_plan_path(@plan) %> |
-
-
-
+<%= link_to 'Edit', edit_plan_path(@plan) %>
 <% end %>
+
+<div>

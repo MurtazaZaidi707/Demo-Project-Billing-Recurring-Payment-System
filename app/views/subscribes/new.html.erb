@@ -1,5 +1,6 @@
-<%= form_with(model: @subscribe) do |form| %>
-  <% if @subscribe.errors.any? %>
+<div class="container-sm shadow-lg">
+    <%= form_with(model: @subscribe) do |form| %>
+    <% if @subscribe.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@subscribe.errors.count, "error") %> prohibited this subscribe from being saved:</h2>
 
@@ -24,4 +25,5 @@
   <div class="actions">
     <%= form.submit %>
   </div>
-<% end %>
+  <% end %>
+</div>

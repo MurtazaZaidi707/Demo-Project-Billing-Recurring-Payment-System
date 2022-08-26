@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-
-  #get 'plans/index'
+  # get 'plans/index'
   # get 'home/index'
   devise_for :users
   resources :subscribes

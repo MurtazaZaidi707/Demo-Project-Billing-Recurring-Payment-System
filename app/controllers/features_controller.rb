@@ -1,30 +1,27 @@
 # frozen_string_literal: true
 
 class FeaturesController < ApplicationController
-
   before_action :set_feature, only: %i[show edit update destroy]
 
   def index; end
 
   def create
     @plan = Plan.find(params[:plan_id])
+
     if @feature = @plan.features.create(feature_params)
       params[:max_units] = @feature.max_unit_limit
       redirect_to plan_feature_usage_path(params[:plan_id], @feature.id)
-      #session[:feature_id] = @feature.id
-      #session[:max_units] = @feature.max_unit_limit
     else
       redirect_to new_plan_path
     end
   end
 
   def usage
-    #byebug
     if request.get?
       render 'shared/usage'
     else
-     # byebug
       @usage = Usage.new(usage_params)
+
       if @usage.save
         redirect_to usages_path
       else
@@ -60,9 +57,6 @@ class FeaturesController < ApplicationController
   end
 
   def usage_params
-    #byebug
     params.permit(:user_id, :unit_consumed, :total_units, :feature_id)
   end
-
-
 end

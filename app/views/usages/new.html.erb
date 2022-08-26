@@ -1,4 +1,5 @@
-<%= form_with(model: @usage) do |form| %>
+<div class="container-sm shadow-lg">
+  <%= form_with(model: @usage) do |form| %>
   <% if @usage.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@usage.errors.count, "error") %> prohibited this usage from being saved:</h2>
@@ -35,3 +36,5 @@
     <%= form.submit %>
   </div>
 <% end %>
+
+</div>

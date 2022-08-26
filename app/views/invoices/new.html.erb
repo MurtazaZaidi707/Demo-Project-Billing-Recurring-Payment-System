@@ -1,3 +1,4 @@
+<div class="container-sm shadow-lg">
 <%= form_with(model: @invoice) do |form| %>
   <% if @invoice.errors.any? %>
     <div id="error_explanation">
@@ -41,3 +42,4 @@
     <%= form.submit %>
   </div>
 <% end %>
+</div>
