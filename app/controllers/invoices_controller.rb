@@ -10,6 +10,10 @@ class InvoicesController < ApplicationController
     @invoice.subscribe_id = params[:subscribe_id]
   end
 
+  def show
+    @invoice = Invoice.find(params[:id])
+  end
+
   def create
     @invoice = Invoice.new(invoice_params)
 
