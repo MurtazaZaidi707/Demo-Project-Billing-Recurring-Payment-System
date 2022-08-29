@@ -1,22 +1,31 @@
 <div class="container-sm shadow-lg">
+<br>
 <h2>Features</h2>
-  <p>
-    <strong>Name:</strong>
-    <%= @usage.feature.name %>
-  </p>
-
-  <p>
-    <strong>code:</strong>
-    <%= @usage.feature.code %>
-  </p>
-
-  <p>
-    <strong>unit_price:</strong>
-    <%= @usage.feature.unit_price %>
-  </p>
-
-  <p>
-    <strong>max_unit_limit:</strong>
-    <%= @usage.feature.max_unit_limit %>
-  </p>
+  <div class="card text-dark bg-light mb-3" style="width: 20rem;">
+    <div class="card-header">
+      <p>
+        <strong>Name:</strong>
+        <%= @usage.feature.name %>
+      </p>
+    </div>
+    <div class="card-body">
+      <p>
+        <strong>code:</strong>
+        <%= @usage.feature.code %>
+      </p>
+    </div>
+    <div class="card-body">
+      <p>
+        <strong>unit_price:</strong>
+        <%= @usage.feature.unit_price %>
+      </p>
+    </div>
+    <div class="card-body">
+      <p>
+        <strong>max_unit_limit:</strong>
+        <%= @usage.feature.max_unit_limit %>
+      </p>
+    </div>
+  </div>
+  <br>
 </div>
