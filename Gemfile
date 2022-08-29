@@ -7,6 +7,7 @@ ruby '3.0.2'
 
 gem 'awesome_print', '~> 1.9', '>= 1.9.2'
 gem 'bootstrap', '~> 5.2.0'
+gem 'cocoon'
 gem 'devise'
 gem 'jquery-rails'
 gem 'kaminari'

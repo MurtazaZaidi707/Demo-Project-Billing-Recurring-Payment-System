@@ -7,14 +7,13 @@ class FeaturesController < ApplicationController
 
   def create
     @plan = Plan.find(params[:plan_id])
-    #@feature = @plan.feature.build(params[:feature])
+    # @feature = @plan.feature.build(params[:feature])
 
     if @feature = @plan.features.create(feature_params)
       params[:max_units] = @feature.max_unit_limit
-      if @feature.errors.full_messages.join(" ").present?
+      if @feature.errors.full_messages.join(' ').present?
         render 'plans/show'
-      elsif
-        redirect_to plan_feature_usage_path(params[:plan_id], @feature.id)
+      elsif redirect_to plan_feature_usage_path(params[:plan_id], @feature.id)
       end
 
     else

@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class PlansController < ApplicationController
-
   before_action :set_feature, only: %i[show edit update destroy]
 
   def index
@@ -53,6 +52,7 @@ class PlansController < ApplicationController
   end
 
   def plan_params
-    params.require(:plan).permit(:monthly_fee, :name)
+    params.require(:plan).permit(:monthly_fee, :name,
+                                 features_attributes: %i[id name code unit_price max_unit_limit _destroy])
   end
 end

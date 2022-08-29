@@ -22,6 +22,17 @@
     <%= form.text_field :name, { class: "form-control", placeholder: "Name" } %>
   </div>
 
+  <fieldset>
+        <legend>Add Features</legend>
+        <%= form.fields_for :features do |feature| %>
+           <%= render "feature_fields", f: feature %>
+        <% end %>
+        <div class="links">
+          <%= link_to_add_association "Add Feature", form, :features %>
+        </div>
+  </fieldset>
+  <br>
   <button type="submit" class="btn btn-primary">Submit</button>
   </div>
+  <br>
 <% end %>
