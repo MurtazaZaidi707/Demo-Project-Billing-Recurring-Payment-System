@@ -1,7 +1,6 @@
 <div class="container-sm shadow-lg">
-
   <p id="notice"><%= notice %></p>
-
+<br>
 <p>
   <strong>Name:</strong>
   <%= @plan.name %>
@@ -11,75 +10,67 @@
   <strong>monthly_fee:</strong>
   <%= @plan.monthly_fee %>
 </p>
+<%= @plan.features.count %>
+    <h2>Features</h2>
+    <% @plan.features.each do |feature| %>
+      <% if feature.id != nil %>
+        <p>
+          <strong>Name:</strong>
+          <%= feature.name %>
+        </p>
 
-<h2>Features</h2>
-<% @plan.features.each do |feature| %>
-  <p>
-    <strong>Name:</strong>
-    <%= feature.name %>
-  </p>
+        <p>
+          <strong>code:</strong>
+          <%= feature.code %>
+        </p>
 
-  <p>
-    <strong>code:</strong>
-    <%= feature.code %>
-  </p>
+        <p>
+          <strong>unit_price:</strong>
+          <%= feature.unit_price %>
+        </p>
 
-  <p>
-    <strong>unit_price:</strong>
-    <%= feature.unit_price %>
-  </p>
+        <p>
+          <strong>max_unit_limit:</strong>
+          <%= feature.max_unit_limit %>
+        </p>
 
-  <p>
-    <strong>max_unit_limit:</strong>
-    <%= feature.max_unit_limit %>
-  </p>
-  <% if current_user&.type == 'Admin' %>
-    <%= feature.id %>
-    <% @feature = feature %>
-    <%= link_to 'Edit Feature', edit_plan_feature_path(@plan, @feature) %> |
-    <%= link_to 'Delete', plan_feature_path(@plan, @feature), method: :delete, data: {confirm: "Are you sure?"}, remote: true %>
-  <% end %>
+        <% if current_user&.type == 'Admin' %>
+          <p>id:<%=  feature.id %></p>
 
-<% end %>
+          <%= link_to 'Edit Feature', edit_plan_feature_path(@plan, feature) %> |
+          <%= link_to 'Delete', plan_feature_path(@plan, feature), method: :delete, data: {confirm: "Are you sure?"}, remote: true %>
+        <% end %>
+      <% end %>
+    <% end %>
 
 <% if current_user&.type == 'Admin' %>
-  <% @feature = @plan.features.build %>
+  <%= debug puts @feature.errors %>
   <%= form_with model: [ @plan, @feature ] do |form| %>
-  <% if @feature.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@feature.errors.count, "error") %> prohibited this feature from being saved:</h2>
+    <p>
+      <%= form.label :name, { class: "form-label"} %><br>
+      <%= form.text_field :name, { class: "form-control", placeholder: "name" } %>
+    </p>
+    <p>
+      <%= form.label :code, { class: "form-label"} %><br>
+      <%= form.text_area :code, { class: "form-control", placeholder: "code" } %>
+    </p>
+    <p>
+      <%= form.label :unit_price, { class: "form-label"} %><br>
+      <%= form.text_area :unit_price, { class: "form-control", placeholder: "unit_price" } %>
+    </p>
+    <p>
+      <%= form.label :max_unit_limit, { class: "form-label"} %><br>
+      <%= form.text_area :max_unit_limit, { class: "form-control", placeholder: "max_unit_limit" } %>
+    </p>
+    <p>
+      <%= form.label :plan_id, { class: "form-label"} %><br>
+      <%= form.text_area :plan_id, { class: "form-control", placeholder: "plan_id" } %>
+    </p>
 
-      <ul>
-        <% @feature.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
   <% end %>
-  <p>
-    <%= form.label :name, { class: "form-label"} %><br>
-    <%= form.text_field :name, { class: "form-control", placeholder: "name" } %>
-  </p>
-  <p>
-    <%= form.label :code, { class: "form-label"} %><br>
-    <%= form.text_area :code, { class: "form-control", placeholder: "code" } %>
-  </p>
-  <p>
-    <%= form.label :unit_price, { class: "form-label"} %><br>
-    <%= form.text_area :unit_price, { class: "form-control", placeholder: "unit_price" } %>
-  </p>
-  <p>
-    <%= form.label :max_unit_limit, { class: "form-label"} %><br>
-    <%= form.text_area :max_unit_limit, { class: "form-control", placeholder: "max_unit_limit" } %>
-  </p>
-  <p>
-    <%= form.label :plan_id, { class: "form-label"} %><br>
-    <%= form.text_area :plan_id, { class: "form-control", placeholder: "plan_id" } %>
-  </p>
 
-  <button type="submit" class="btn btn-primary">Save</button>
-<% end %>
-<%= link_to 'Edit', edit_plan_path(@plan) %>
+  <%= link_to 'Edit', edit_plan_path(@plan) %>
 <% end %>
 
 <div>

@@ -12,7 +12,9 @@ class PlansController < ApplicationController
     @plan = Plan.new
   end
 
-  def show; end
+  def show
+    @feature = @plan.features.build
+  end
 
   # GET /users/1/edit
   def edit; end
