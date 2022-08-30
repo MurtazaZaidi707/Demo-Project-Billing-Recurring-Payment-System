@@ -3,28 +3,30 @@
 </div>
 
 <div class="container-sm w-2 shadow-lg">
+  <br>
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="feild form-group">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, class:"form-control", autofocus: true, autocomplete: "email" %>
+    <%= f.label :email, { class: "form-label"} %><br />
+    <%= f.email_field :email, class:"form-control", placeholder: "Email", autofocus: true, autocomplete: "email" %>
   </div>
 
   <div class="feild form-group">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, class:"form-control" , autocomplete: "current-password" %>
+    <%= f.label :password, { class: "form-label"} %><br />
+    <%= f.password_field :password, class:"form-control", placeholder: "Password" , autocomplete: "current-password" %>
   </div>
 
   <% if devise_mapping.rememberable? %>
     <div class="mb-3">
-      <%= f.check_box :remember_me %>
+      <%= f.check_box :remember_me, class:"form-check-input" %>
       <%= f.label :remember_me %>
     </div>
   <% end %>
 
   <div class="mb-3">
-    <%= f.submit "Log in" %>
+    <button type="submit" class="btn btn-dark">Login</button>
   </div>
 <% end %>
 
 <%= render "devise/shared/links" %>
+<br>
 </div>
