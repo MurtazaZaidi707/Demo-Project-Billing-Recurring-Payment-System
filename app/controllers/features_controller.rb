@@ -2,35 +2,32 @@
 
 class FeaturesController < ApplicationController
   before_action :set_feature, only: %i[show edit update destroy]
+  before_action :set_plan, only: %i[show edit update destroy]
 
   def index; end
 
   def create
     @plan = Plan.find(params[:plan_id])
     # @feature = @plan.feature.build(params[:feature])
-
-    if @feature = @plan.features.create(feature_params)
-      params[:max_units] = @feature.max_unit_limit
-      if @feature.errors.full_messages.join(' ').present?
-        render 'plans/show'
-      elsif redirect_to plan_feature_usage_path(params[:plan_id], @feature.id)
-      end
-
+    @feature = @plan.features.create(feature_params)
+    if @feature.persisted?
+      redirect_to plan_feature_usage_path(params[:plan_id], @feature.id, max_units: @feature.max_unit_limit)
     else
-      redirect_to plan
+      # byebug
+      render 'plans/show'
     end
   end
 
   def usage
     if request.get?
-      render 'shared/usage'
+      render :usage
     else
-      @usage = Usage.new(usage_params)
+      @usage = current_user.usages.new(usage_params)
 
       if @usage.save
         redirect_to usages_path
       else
-        render :new, status: :unprocessable_entity
+        render :usage
       end
     end
   end
@@ -53,8 +50,11 @@ class FeaturesController < ApplicationController
   private
 
   def set_feature
-    @plan = Plan.find(params[:plan_id])
     @feature = Feature.find(params[:id])
+  end
+
+  def set_plan
+    @plan = Plan.find(params[:plan_id])
   end
 
   def feature_params

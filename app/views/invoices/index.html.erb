@@ -36,7 +36,7 @@
         </td>
         <td><%= invoice.subscribe.billing_date  %></td>
         <td><%= invoice.total_amount %></td>
-        <td><%= link_to 'Generate Invoice', invoice %></td>
+        <td><%= link_to 'Generate Invoice', invoice, class:"btn btn-outline-dark btn-sm" %></td>
         </tr>
     <% end %>
   </tbody>

@@ -4,10 +4,17 @@
   <h1>Plans</h1>
 </div>
 
+<div class="container">
+  <% if current_user&.type == 'Admin' %>
+    <%= link_to 'New plan', new_plan_path, class:"btn btn-dark" , id: "new_link"%>
+  <% end %>
+</div>
+<br>
+
 <table class="container table table-striped shadow-lg">
   <thead>
     <tr>
-      <th>Plan_id</th>
+      <th>Plan id</th>
       <th>Name</th>
       <th>Monthly fee</th>
       <th colspan="3"></th>
@@ -22,9 +29,3 @@
 </table>
 
 <br>
-
-<div class="container">
-  <% if current_user&.type == 'Admin' %>
-    <%= link_to 'New plan', new_plan_path, id: "new_link"%>
-  <% end %>
-</div>

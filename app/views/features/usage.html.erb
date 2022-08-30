@@ -1,9 +1,14 @@
 <div class="container-sm shadow-lg">
+
   <%= form_with(model: @usage) do |form| %>
+  <% if @usage.present? && @object&.errors&.any? %>
+    <%= render 'shared/errors' %>
+  <% end %>
+
   <br/>
   <div class="field md-3">
     <%= form.label :units_consumed%>
-    <%= form.number_field :unit_consumed, { class: "form-control", placeholder: "name" } %>
+    <%= form.number_field :unit_consumed, { class: "form-control", placeholder: "Unit Consumed" } %>
   </div>
 
   <div class="field md-3">
@@ -16,9 +21,11 @@
     <%= form.text_field :feature_id, value: params[:feature_id] %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  <br>
+    <p>
+      <button type="submit" class="btn btn-dark">Save Usage</button>
+    </p>
+  <br>
 <% end %>
 
 </div>

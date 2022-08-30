@@ -13,48 +13,53 @@
 <%= @plan.features.count %>
     <h2>Features</h2>
     <% @plan.features.each do |feature| %>
-      <% if feature.id != nil %>
-      <div class="card text-dark bg-light mb-3" style="width: 20rem;">
-        <div class="card-header">
-          <p>
-            <strong>Feature Name:</strong>
-            <%= feature.name %>
-          </p>
-        </div>
-        <div class="card-body">
-          <p>
-            <strong>code:</strong>
-            <%= feature.code %>
-          </p>
-        </div>
-        <div class="card-body">
-          <p>
-            <strong>unit_price:</strong>
-            <%= feature.unit_price %>
-          </p>
-        </div>
-        <div class="card-body">
-          <p>
-            <strong>max_unit_limit:</strong>
-            <%= feature.max_unit_limit %>
-          </p>
-        </div>
-        <div class="card-body">
-          <% if current_user&.type == 'Admin' %>
-            <p>id:<%=  feature.id %></p>
+      <% if feature.persisted? %>
+      <div class="card-group">
+        <div class="card text-dark bg-light mb-3">
+          <div class="card-header">
+            <p>
+              <strong>Feature Name:</strong>
+              <%= feature.name %>
+            </p>
+          </div>
+          <div class="card-body">
+            <p>
+              <strong>Code:</strong>
+              <%= feature.code %>
+            </p>
+          </div>
+          <div class="card-body">
+            <p>
+              <strong>Unit Price:</strong>
+              <%= feature.unit_price %>
+            </p>
+          </div>
+          <div class="card-body">
+            <p>
+              <strong>Max Unit Limit:</strong>
+              <%= feature.max_unit_limit %>
+            </p>
+          </div>
+          <div class="card-body">
+            <% if current_user&.type == 'Admin' %>
+              <p>id:<%=  feature.id %></p>
 
-            <%= link_to 'Edit Feature', edit_plan_feature_path(@plan, feature) %> |
-            <%= link_to 'Delete', plan_feature_path(@plan, feature), method: :delete, data: {confirm: "Are you sure?"}, remote: true %>
-          <% end %>
+              <%= link_to 'Edit Feature', edit_plan_feature_path(@plan, feature) %> |
+              <%= link_to 'Delete', plan_feature_path(@plan, feature), method: :delete, data: {confirm: "Are you sure?"}, remote: true %>
+            <% end %>
+          </div>
         </div>
-      </div>
+       </div>
       <br>
      <% end %>
     <% end %>
 
 <% if current_user&.type == 'Admin' %>
-  <%= debug puts @feature.errors %>
+  <%= debug @feature.errors.full_messages.join(' - ') %>
   <%= form_with model: [ @plan, @feature ] do |form| %>
+    <% if @feature.present? && @object&.errors&.any? %>
+      <%= render 'shared/errors' %>
+    <% end %>
     <p>
       <%= form.label :name, { class: "form-label"} %><br>
       <%= form.text_field :name, { class: "form-control", placeholder: "name" } %>
@@ -75,11 +80,12 @@
       <%= form.label :plan_id, { class: "form-label"} %><br>
       <%= form.text_area :plan_id, { class: "form-control", placeholder: "plan_id" } %>
     </p>
-
-    <button type="submit" class="btn btn-primary">Save</button>
+    <p>
+      <button type="submit" class="btn btn-dark">Save</button> |
+      <%= link_to 'Edit Plan', edit_plan_path(@plan), class:"btn btn-dark" %>
+    </p>
+    <br>
   <% end %>
-
-  <%= link_to 'Edit', edit_plan_path(@plan) %>
 <% end %>
 
 <div>

@@ -28,11 +28,12 @@
            <%= render "feature_fields", f: feature %>
         <% end %>
         <div class="links">
-          <%= link_to_add_association "Add Feature", form, :features %>
+          <br>
+          <%= link_to_add_association "Add Feature", form, :features, class:"btn btn-outline-dark btn-sm" %>
         </div>
   </fieldset>
   <br>
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="submit" class="btn btn-dark">Submit</button>
   </div>
   <br>
 <% end %>

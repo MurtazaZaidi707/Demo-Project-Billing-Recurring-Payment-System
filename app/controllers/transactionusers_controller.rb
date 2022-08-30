@@ -2,7 +2,7 @@
 
 class TransactionusersController < ApplicationController
   def index
-    @transactionusers = Transactionuser.all
+    @transactionusers = Transactionuser.where(user_id: current_user.id)
   end
 
   def new

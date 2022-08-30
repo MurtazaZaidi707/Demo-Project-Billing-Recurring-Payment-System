@@ -2,7 +2,7 @@
 
 class InvoicesController < ApplicationController
   def index
-    @invoices = Invoice.all
+    @invoices = Invoice.where(user_id: current_user.id)
   end
 
   def new

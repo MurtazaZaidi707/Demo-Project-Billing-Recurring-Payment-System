@@ -20,8 +20,8 @@
 
         <% if current_user&.type == 'Admin' %>
           <li class="nav-item">
-           <%= link_to 'Buyer Accounts', subscribes_path , class: "navbar-brand" %>
-           <%= link_to 'Buyer Usages', usages_path , class: "navbar-brand" %>
+           <%= link_to 'Buyers Accounts', subscribes_path , class: "navbar-brand" %>
+           <%= link_to 'Buyers Usages', usages_path , class: "navbar-brand" %>
           </li>
         <% elsif current_user&.type == 'Buyer' %>
           <li class="nav-item">
@@ -49,7 +49,7 @@
        <div class="navbar-collapse collapse w-20 order-3 dual-collapse2">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <%= link_to 'Edit', edit_user_registration_path , class: "navbar-brand" %>
+            <%= link_to 'Edit User', edit_user_registration_path , class: "navbar-brand" %>
           </li>
 
           </li>
