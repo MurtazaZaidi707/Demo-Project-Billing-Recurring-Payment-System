@@ -7,12 +7,12 @@
 </p>
 
 <p>
-  <strong>monthly_fee:</strong>
+  <strong>Monthly Fee:</strong>
   <%= @plan.monthly_fee %>
 </p>
-<%= @plan.features.count %>
+<%= @display_feature&.count %>
     <h2>Features</h2>
-    <% @plan.features.each do |feature| %>
+    <% @display_feature&.each do |feature| %>
       <% if feature.persisted? %>
       <div class="card-group">
         <div class="card text-dark bg-light mb-3">

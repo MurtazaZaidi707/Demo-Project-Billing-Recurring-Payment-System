@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class PlansController < ApplicationController
-  before_action :set_feature, only: %i[show edit update destroy]
+  before_action :set_plan, only: %i[show edit update destroy]
 
   def index
     @plans = Plan.all
@@ -13,6 +13,7 @@ class PlansController < ApplicationController
 
   def show
     @feature = @plan.features.build
+    @display_feature = @plan.features
   end
 
   # GET /users/1/edit
@@ -30,7 +31,7 @@ class PlansController < ApplicationController
   def create
     @plan = Plan.new(plan_params)
 
-    if @plan.save
+    if @plan.valid? && @plan.save
       redirect_to @plan
     else
       render :new, status: :unprocessable_entity
@@ -47,7 +48,7 @@ class PlansController < ApplicationController
 
   private
 
-  def set_feature
+  def set_plan
     @plan = Plan.find(params[:id])
   end
 

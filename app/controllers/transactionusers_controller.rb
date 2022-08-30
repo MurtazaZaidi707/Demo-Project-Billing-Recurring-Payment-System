@@ -6,9 +6,10 @@ class TransactionusersController < ApplicationController
   end
 
   def new
-    @transactionuser = Transactionuser.new
-    @transactionuser.transaction_date = params[:billing_date]
-    @transactionuser.subscribe_id = params[:subscribe_id]
+    @transactionuser = Transactionuser.new(transaction_date: params[:billing_date],
+                                                subscribe_id: params[:subscribe_id] )
+    #@transactionuser.transaction_date = params[:billing_date]
+    #@transactionuser.subscribe_id = params[:subscribe_id]
   end
 
   def create
@@ -24,6 +25,6 @@ class TransactionusersController < ApplicationController
   private
 
   def transactionuser_params
-    params.require(:transactionuser).permit(:user_id, :subscribe_id, :transaction_date)
+    params.require(:transactionuser).permit(:subscribe_id, :transaction_date)
   end
 end

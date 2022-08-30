@@ -8,12 +8,11 @@ class FeaturesController < ApplicationController
 
   def create
     @plan = Plan.find(params[:plan_id])
-    # @feature = @plan.feature.build(params[:feature])
     @feature = @plan.features.create(feature_params)
+
     if @feature.persisted?
       redirect_to plan_feature_usage_path(params[:plan_id], @feature.id, max_units: @feature.max_unit_limit)
     else
-      # byebug
       render 'plans/show'
     end
   end
@@ -62,6 +61,6 @@ class FeaturesController < ApplicationController
   end
 
   def usage_params
-    params.permit(:user_id, :unit_consumed, :total_units, :feature_id)
+    params.permit(:unit_consumed, :total_units, :feature_id)
   end
 end
