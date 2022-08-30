@@ -2,12 +2,11 @@
 
 class FeaturesController < ApplicationController
   before_action :set_feature, only: %i[show edit update destroy]
-  before_action :set_plan, only: %i[show edit update destroy]
+  before_action :set_plan, only: %i[show edit update destroy create]
 
   def index; end
 
   def create
-    @plan = Plan.find(params[:plan_id])
     @feature = @plan.features.create(feature_params)
 
     if @feature.persisted?

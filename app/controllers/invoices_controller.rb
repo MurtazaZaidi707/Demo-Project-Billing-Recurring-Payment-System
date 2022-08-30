@@ -2,12 +2,11 @@
 
 class InvoicesController < ApplicationController
   def index
-    @invoices = Invoice.where(user_id: current_user.id)
+    @invoices = current_user.invoices
   end
 
   def new
-    @invoice = Invoice.new
-    @invoice.subscribe_id = params[:subscribe_id]
+    @invoice = Invoice.new(subscribe_id: params[:subscribe_id])
   end
 
   def show

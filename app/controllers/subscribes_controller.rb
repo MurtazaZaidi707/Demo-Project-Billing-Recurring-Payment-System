@@ -6,8 +6,7 @@ class SubscribesController < ApplicationController
   end
 
   def new
-    @subscribe = Subscribe.new
-    @subscribe.plan_id = params[:plan_id]
+    @subscribe = Subscribe.new(plan_id: params[:plan_id])
   end
 
   def create

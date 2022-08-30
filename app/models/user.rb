@@ -13,4 +13,5 @@ class User < ApplicationRecord
 
   has_many :usages
   has_many :invoices
+  has_many :transactionusers
 end

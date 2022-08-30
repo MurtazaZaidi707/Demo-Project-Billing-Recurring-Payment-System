@@ -10,8 +10,7 @@ class UsagesController < ApplicationController
   def show; end
 
   def new
-    @usage = Usage.new
-    @usage.feature_id = params[:feature_id]
+    @usage = Usage.new(feature_id: params[:feature_id])
   end
 
   def create
