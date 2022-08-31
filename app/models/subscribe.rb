@@ -3,7 +3,7 @@
 class Subscribe < ApplicationRecord
   belongs_to :user
   belongs_to :plan
-  has_one :transactionusers
+  has_one :payments
   has_one :invoices
 
   before_create :ensure_current_date

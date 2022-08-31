@@ -11,9 +11,10 @@ class SubscribesController < ApplicationController
 
   def create
     @subscribe = Subscribe.new(subscribe_params)
+    @subscribe.user_id = current_user.id
 
     if @subscribe.save
-      redirect_to new_transactionuser_path(subscribe_id: @subscribe.id, billing_date: @subscribe.billing_date)
+      redirect_to new_payment_path(subscribe_id: @subscribe.id, billing_date: @subscribe.billing_date)
     else
       render :new, status: :unprocessable_entity
     end
@@ -22,6 +23,6 @@ class SubscribesController < ApplicationController
   private
 
   def subscribe_params
-    params.require(:subscribe).permit(:user_id, :plan_id, :billing_date)
+    params.require(:subscribe).permit(:plan_id, :billing_date)
   end
 end

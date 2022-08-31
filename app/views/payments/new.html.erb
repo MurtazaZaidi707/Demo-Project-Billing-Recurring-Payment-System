@@ -1,11 +1,11 @@
 <div class="container-sm shadow-lg">
-  <%= form_with(model: @transactionuser) do |form| %>
-  <% if @transactionuser.errors.any? %>
+  <%= form_with(model: @payment) do |form| %>
+  <% if @payment.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@transactionuser.errors.count, "error") %> prohibited this transactionuser from being saved:</h2>
+      <h2><%= pluralize(@payment.errors.count, "error") %> prohibited this payment from being saved:</h2>
 
       <ul>
-        <% @transactionuser.errors.each do |error| %>
+        <% @payment.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
@@ -24,7 +24,7 @@
 
   <div class="field">
     <%= form.label :subscribe_id %>
-    <%= form.text_field :subscribe_id, value: @transactionuser.subscribe_id %>
+    <%= form.text_field :subscribe_id, value: @payment.subscribe_id %>
   </div>
   <br>
     <p>

@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :subscribes
   resources :usages
-  resources :transactionusers
+  resources :payments
   resources :invoices
 
   resources :plans do

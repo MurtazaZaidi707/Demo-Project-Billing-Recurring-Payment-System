@@ -12,8 +12,8 @@
     </tr>
   </thead>
 
-  <tbody id="transactionusersTable w-30">
-    <% @transactionusers.each do |transaction| %>
+  <tbody id="paymentsTable w-30">
+    <% @payments.each do |transaction| %>
       <tr id="planRow_<%= transaction.id %>">
         <td><%= transaction.user_id %></td>
         <td><%= transaction.id %></td>

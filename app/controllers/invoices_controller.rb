@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 class InvoicesController < ApplicationController
+
   def index
-    @invoices = current_user.invoices
+    @invoices = current_user.invoices.includes(:usage)
   end
 
   def new

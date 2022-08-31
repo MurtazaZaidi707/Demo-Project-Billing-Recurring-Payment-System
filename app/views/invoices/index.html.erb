@@ -18,12 +18,13 @@
   </thead>
 
   <tbody id="invoicesTable w-30">
+  <tbody id="invoicesTable w-30">
     <% @invoices.each do |invoice| %>
       <tr id="planRow_<%= invoice.id %>">
         <td><%= invoice.user_id %></td>
         <td><%= invoice.usage.feature.unit_price %></td>
         <td><%= invoice.usage.feature.max_unit_limit %></td>
-        <td><%= invoice.usage.unit_consumed %></td>
+        <td><%= @unit_consumed %></td>
         <td>
           <% if invoice.usage.unit_consumed > invoice.usage.feature.max_unit_limit %>
             <%= invoice.usage.unit_consumed - invoice.usage.feature.max_unit_limit %>
@@ -41,5 +42,4 @@
     <% end %>
   </tbody>
 </table>
-
 <br>
