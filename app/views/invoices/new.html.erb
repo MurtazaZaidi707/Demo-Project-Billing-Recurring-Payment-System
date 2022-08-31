@@ -13,28 +13,38 @@
   <% end %>
   <br/>
   <div class="field">
-    <%= form.label :subscribe_id %>
-    <%= form.text_field :subscribe_id, value: @invoice.subscribe_id %>
+    <%= form.hidden_field :subscribe_id, value: @invoice.subscribe_id %>
   </div>
 
   <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id, value: current_user.id %>
+    <%= form.hidden_field :user_id, value: current_user.id %>
   </div>
 
-  <div class="field">
-    <%= form.label :usage_id %>
+  <% invoice = @invoice.subscribe.plan.features %>
 
-    <% @invoice.subscribe.plan.features.each do |feature| %>
-      <%= form.text_field :usage_id, value: feature.usage.id %>
+  <div class="field">
+    <% invoice.each do |feature| %>
+      <%= form.hidden_field :usage_id, value: feature.usage.id%>
     <%end%>
-
   </div>
 
+  <div class="fst-italic fs-5 text-black-50">
+      <% invoice.each do |feature| %>
+        <%= "Unit Consumed:" %>
+        <%= feature.usage.unit_consumed %><br>
+
+        <%= "Unit Price:" %>
+        <%= feature.unit_price %><br>
+
+        <%= "Total Units:" %>
+        <%= feature.max_unit_limit %>
+      <%end%>
+  </div>
+  <br>
   <div class="field">
-    <%= form.label :total_amount %>
-    <% @invoice.subscribe.plan.features.each do |feature| %>
-      <%= form.text_field :total_amount, value: feature.usage.unit_consumed * feature.unit_price  %>
+    <%= form.label :total_amount, { class: "form-label"} %>
+    <% invoice.each do |feature| %>
+      <%= form.text_field :total_amount, class:"form-control" , value: feature.usage.unit_consumed * feature.unit_price, readonly: true %>
     <%end%>
   </div>
 

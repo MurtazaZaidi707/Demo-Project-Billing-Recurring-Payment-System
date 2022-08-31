@@ -14,7 +14,7 @@ class PaymentsController < ApplicationController
     @payment.user_id = current_user.id
 
     if @payment.save
-      redirect_to new_invoice_path(subscribe_id: @payment.subscribe_id)
+      redirect_to invoices_path
     else
       render :new, status: :unprocessable_entity
     end

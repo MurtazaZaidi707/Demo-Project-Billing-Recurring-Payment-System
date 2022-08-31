@@ -12,16 +12,25 @@
     </div>
   <% end %>
   <br/>
+
   <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id, value: current_user.id %>
+    <%= form.hidden_field :user_id, value: current_user.id %>
   </div>
 
   <div class="field">
-    <%= form.label :plan_id %>
-    <%= form.text_field :plan_id, value: @subscribe.plan_id %>
+    <%= form.hidden_field :plan_id, value: @subscribe.plan_id %>
   </div>
   <br>
+
+  <div class="fst-italic fs-5 text-black-50">
+      <%= "Plan Name:" %>
+      <%= @subscribe.plan.name %><br>
+
+      <% @subscribe.plan.features.each do |feature| %>
+        <%= "Total Units:" %>
+        <%= feature.max_unit_limit %><br>
+      <%end%>
+  </div>
 
   <br>
     <p>

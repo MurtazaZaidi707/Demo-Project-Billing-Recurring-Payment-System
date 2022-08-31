@@ -16,9 +16,10 @@ class InvoicesController < ApplicationController
 
   def create
     @invoice = Invoice.new(invoice_params)
+    @invoice.user_id = current_user.id
 
     if @invoice.save
-      redirect_to invoices_path
+      redirect_to new_payment_path(subscribe_id: @invoice.subscribe.id, billing_date: @invoice.subscribe.billing_date)
     else
       render :new, status: :unprocessable_entity
     end
@@ -27,6 +28,6 @@ class InvoicesController < ApplicationController
   private
 
   def invoice_params
-    params.require(:invoice).permit(:user_id, :subscribe_id, :usage_id, :total_amount)
+    params.require(:invoice).permit(:subscribe_id, :usage_id, :total_amount)
   end
 end

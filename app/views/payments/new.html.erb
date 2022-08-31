@@ -13,22 +13,20 @@
   <% end %>
   <br/>
   <div class="field">
-    <%= form.label :transaction_date %>
-    <%= form.date_field :transaction_date %>
+    <%= form.label :transaction_date, { class: "form-label"} %>
+    <%= form.date_field :transaction_date, class:"form-control" , readonly: true %>
   </div>
 
   <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id, value: current_user.id %>
+    <%= form.hidden_field :user_id, value: current_user.id %>
   </div>
 
   <div class="field">
-    <%= form.label :subscribe_id %>
-    <%= form.text_field :subscribe_id, value: @payment.subscribe_id %>
+    <%= form.hidden_field :subscribe_id, value: @payment.subscribe_id %>
   </div>
   <br>
     <p>
-      <button type="submit" class="btn btn-dark">Create Transaction</button>
+      <button type="submit" class="btn btn-dark">Make Transaction</button>
     </p>
   <br>
 
