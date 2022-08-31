@@ -32,7 +32,9 @@ class PlansController < ApplicationController
     @plan = Plan.new(plan_params)
 
     if @plan.valid? && @plan.save
-      redirect_to @plan
+      @plan.features.each do |feature|
+        redirect_to plan_feature_usage_path(@plan.id, feature.id, max_units: feature.max_unit_limit)
+      end
     else
       render :new, status: :unprocessable_entity
     end
