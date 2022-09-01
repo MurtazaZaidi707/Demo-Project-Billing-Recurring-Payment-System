@@ -1,68 +1,78 @@
 <div class="container-sm shadow-lg">
+  <br>
   <h2>Features</h2>
   <div class="card-group">
         <div class="card text-dark bg-light mb-3">
+        <% invoice = @invoice.payment.usage %>
+        <% @invoice.subscribe.plan.features do |feature| %>
           <div class="card-header">
-            <p>
-              <strong>Name:</strong>
-              <%= @invoice.usage.feature.name %>
-            </p>
-          </div>
-          <div class="card-body">
               <p>
-                <strong>code:</strong>
-                <%= @invoice.usage.feature.code %>
+                <strong>Name:</strong>
+                <%= feature.name %>
               </p>
-          </div>
-          <div class="card-body">
-              <p>
-                <strong>unit_price:</strong>
-                <%= @invoice.usage.feature.unit_price %>
-              </p>
-          </div>
-          <div class="card-body">
-              <p>
-                <strong>max_unit_limit:</strong>
-                <%= @invoice.usage.feature.max_unit_limit %>
-              </p>
-          </div>
+            </div>
+            <div class="card-body">
+                <p>
+                  <strong>code:</strong>
+                  <%= feature.code %>
+                </p>
+            </div>
+            <div class="card-body">
+                <p>
+                  <strong>Unit Price:</strong>
+                  <%= feature.unit_price %>
+                </p>
+            </div>
+            <div class="card-body">
+                <p>
+                  <strong>Max Unit Limit:</strong>
+                  <%= feature.max_unit_limit %>
+                </p>
+            </div>
+        <% end %>
+
           <div class="card-body">
               <h3>Invoice</h3>
           </div>
           <div class="card-body">
               <p>
-                <strong>Unit_consumed:</strong>
-                  <%= @invoice.usage.unit_consumed %>
+                <strong>Unit Consumed:</strong>
+                  <%= invoice.unit_consumed %>
               </p>
           </div>
           <div class="card-body">
               <p>
-                <strong>Billing_Date:</strong>
+                <strong>Billing Date:</strong>
                 <td><%= @invoice.subscribe.billing_date  %></td>
               </p>
           </div>
-          <div class="card-body">
+          <% plans = invoice&.subscribe.plan %>
+
+          <% plans.features.each do |feature|  %>
+            <div class="card-body">
+                <p>
+                  <strong>Total Amount:</strong>
+                  <td><%= invoice.unit_consumed * feature.unit_price %></td>
+                </p>
+            </div>
+            <div class="card-body">
+                <p>
+                  <% if invoice.unit_consumed > feature.max_unit_limit %>
+                      <strong>Exceeded_Units:</strong>
+                      <%= invoice.unit_consumed - feature.max_unit_limit %>
+                  <%end%>
+                </p>
+            </div>
+            <div class="card-body">
               <p>
-                <strong>Total_Amount:</strong>
-                <td><%= @invoice.total_amount  %></td>
-              </p>
-          </div>
-          <div class="card-body">
-              <p>
-                <% if @invoice.usage.unit_consumed > @invoice.usage.feature.max_unit_limit %>
-                    <strong>Exceeded_Units:</strong>
-                    <%= @invoice.usage.unit_consumed - @invoice.usage.feature.max_unit_limit %>
+                <% if invoice.unit_consumed > feature.max_unit_limit %>
+                    <strong>Exceeded_Units_Amount:</strong>
+                    <%= (invoice.unit_consumed - feature.max_unit_limit) * feature.unit_price %>
                 <%end%>
               </p>
-          </div>
-          <div class="card-body">
-            <p>
-              <% if @invoice.usage.unit_consumed > @invoice.usage.feature.max_unit_limit %>
-                  <strong>Exceeded_Units_Amount:</strong>
-                  <%= (@invoice.usage.unit_consumed - @invoice.usage.feature.max_unit_limit) * @invoice.usage.feature.unit_price %>
-              <%end%>
-            </p>
-          </div>
+            </div>
+          <% end %>
+
         </div>
       </div>
 </div>

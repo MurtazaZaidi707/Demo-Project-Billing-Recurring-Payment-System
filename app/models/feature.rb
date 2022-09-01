@@ -7,5 +7,4 @@ class Feature < ApplicationRecord
   validates :max_unit_limit, presence: true
 
   belongs_to :plan
-  has_one :usage, dependent: :destroy
 end

@@ -5,9 +5,13 @@ Rails.application.routes.draw do
   # get 'home/index'
   devise_for :users
   resources :subscribes
-  resources :usages
-  resources :payments
   resources :invoices
+  resources :usages
+
+  resources :payments do
+      get :usage
+      post :usage
+  end
 
   resources :plans do
     resources :features do

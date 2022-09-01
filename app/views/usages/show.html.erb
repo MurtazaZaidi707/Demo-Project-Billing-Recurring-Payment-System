@@ -2,30 +2,33 @@
 <br>
 <h2>Features</h2>
   <div class="card text-dark bg-light mb-3">
+  <% plans = @usage&.subscribe.plan %>
+  <% plans.features.each do |feature|  %>
     <div class="card-header">
-      <p>
-        <strong>Name:</strong>
-        <%= @usage.feature.name %>
-      </p>
-    </div>
-    <div class="card-body">
-      <p>
-        <strong>Code:</strong>
-        <%= @usage.feature.code %>
-      </p>
-    </div>
-    <div class="card-body">
-      <p>
-        <strong>Unit Price:</strong>
-        <%= @usage.feature.unit_price %>
-      </p>
-    </div>
-    <div class="card-body">
-      <p>
-        <strong>Max Unit Limit:</strong>
-        <%= @usage.feature.max_unit_limit %>
-      </p>
-    </div>
+        <p>
+          <strong>Name:</strong>
+          <%= feature.name %>
+        </p>
+      </div>
+      <div class="card-body">
+        <p>
+          <strong>Code:</strong>
+          <%= feature.code %>
+        </p>
+      </div>
+      <div class="card-body">
+        <p>
+          <strong>Unit Price:</strong>
+          <%= feature.unit_price %>
+        </p>
+      </div>
+      <div class="card-body">
+        <p>
+          <strong>Max Unit Limit:</strong>
+          <%= feature.max_unit_limit %>
+        </p>
+      </div>
+  <% end %>
   </div>
   <br>
 </div>

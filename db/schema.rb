@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_31_093835) do
+ActiveRecord::Schema.define(version: 2022_09_01_124817) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,12 +29,10 @@ ActiveRecord::Schema.define(version: 2022_08_31_093835) do
   create_table "invoices", force: :cascade do |t|
     t.integer "user_id"
     t.integer "subscribe_id"
-    t.integer "usage_id"
     t.integer "total_amount"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["subscribe_id"], name: "index_invoices_on_subscribe_id"
-    t.index ["usage_id"], name: "index_invoices_on_usage_id"
     t.index ["user_id"], name: "index_invoices_on_user_id"
   end
 
@@ -44,6 +42,8 @@ ActiveRecord::Schema.define(version: 2022_08_31_093835) do
     t.integer "subscribe_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "invoice_id"
+    t.index ["invoice_id"], name: "index_payments_on_invoice_id"
     t.index ["subscribe_id"], name: "index_payments_on_subscribe_id"
     t.index ["user_id"], name: "index_payments_on_user_id"
   end
@@ -68,11 +68,12 @@ ActiveRecord::Schema.define(version: 2022_08_31_093835) do
   create_table "usages", force: :cascade do |t|
     t.integer "user_id"
     t.integer "unit_consumed"
-    t.integer "total_units"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "feature_id"
-    t.index ["feature_id"], name: "index_usages_on_feature_id"
+    t.integer "payment_id"
+    t.integer "subscribe_id"
+    t.index ["payment_id"], name: "index_usages_on_payment_id"
+    t.index ["subscribe_id"], name: "index_usages_on_subscribe_id"
     t.index ["user_id"], name: "index_usages_on_user_id"
   end
 

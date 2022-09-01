@@ -1,0 +1,33 @@
+<div class="container-sm shadow-lg">
+
+  <%= form_with(model: @usage) do |form| %>
+  <% if @usage.present? && @object&.errors&.any? %>
+    <%= render 'shared/errors' %>
+  <% end %>
+
+  <br/>
+  <div class="field md-3">
+    <%= form.label :units_consumed%>
+    <%= form.number_field :unit_consumed, { class: "form-control", placeholder: "Unit Consumed" } %>
+  </div>
+
+  <div class="field md-3">
+    <%= form.hidden_field :user_id, value: current_user.id %>
+  </div>
+
+  <div class="field md-3">
+    <%= form.hidden_field :payment_id, value: params[:payment_id] %>
+  </div>
+
+  <div class="field md-3">
+    <%= form.hidden_field :subscribe_id, value: params[:subscribe_id] %>
+  </div>
+
+  <br>
+    <p>
+      <button type="submit" class="btn btn-dark">Save Usage</button>
+    </p>
+  <br>
+<% end %>
+
+</div>

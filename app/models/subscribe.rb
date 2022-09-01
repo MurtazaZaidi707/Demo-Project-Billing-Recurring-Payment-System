@@ -4,7 +4,8 @@ class Subscribe < ApplicationRecord
   belongs_to :user
   belongs_to :plan
   has_one :payments
-  has_one :invoices
+  has_one :invoice
+  has_one :usages
 
   before_create :ensure_current_date
 

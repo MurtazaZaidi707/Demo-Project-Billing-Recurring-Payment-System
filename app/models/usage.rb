@@ -4,7 +4,6 @@ class Usage < ApplicationRecord
   validates :unit_consumed, presence: true
 
   belongs_to :user
-  belongs_to :feature
-
-  has_one :invoice
+  belongs_to :payment
+  belongs_to :subscribe
 end

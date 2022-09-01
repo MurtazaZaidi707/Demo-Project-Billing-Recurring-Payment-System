@@ -3,5 +3,5 @@
 class Invoice < ApplicationRecord
   belongs_to :user
   belongs_to :subscribe
-  belongs_to :usage
+  has_one :payment
 end

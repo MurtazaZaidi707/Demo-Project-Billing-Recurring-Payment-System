@@ -7,13 +7,9 @@
   <thead>
     <tr>
       <th>User id</th>
-      <th>Unit Price</th>
-      <th>Total Units</th>
-      <th>Unit_consumed</th>
-      <th>Exceeded_Units</th>
-      <th>Exceeded_Units_Amount</th>
+      <th>Plan id</th>
+      <th>Plan Name</th>
       <th>Billing Date</th>
-      <th>Total Amount</th>
     </tr>
   </thead>
 
@@ -22,21 +18,9 @@
     <% @invoices.each do |invoice| %>
       <tr id="planRow_<%= invoice.id %>">
         <td><%= invoice.user_id %></td>
-        <td><%= invoice.usage.feature.unit_price %></td>
-        <td><%= invoice.usage.feature.max_unit_limit %></td>
-        <td><%= @unit_consumed %></td>
-        <td>
-          <% if invoice.usage.unit_consumed > invoice.usage.feature.max_unit_limit %>
-            <%= invoice.usage.unit_consumed - invoice.usage.feature.max_unit_limit %>
-          <%end%>
-        </td>
-        <td>
-          <% if invoice.usage.unit_consumed > invoice.usage.feature.max_unit_limit %>
-            <%= (invoice.usage.unit_consumed - invoice.usage.feature.max_unit_limit) * invoice.usage.feature.unit_price %>
-          <%end%>
-        </td>
+        <td><%= invoice.subscribe.plan.id %></td>
+        <td><%= invoice.subscribe.plan.name %></td>
         <td><%= invoice.subscribe.billing_date  %></td>
-        <td><%= invoice.total_amount %></td>
         <td><%= link_to 'Generate Invoice', invoice, class:"btn btn-outline-dark btn-sm" %></td>
         </tr>
     <% end %>

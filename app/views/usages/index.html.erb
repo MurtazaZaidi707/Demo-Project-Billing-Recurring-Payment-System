@@ -21,13 +21,19 @@
       <tr id="planRow_<%=usage.id %>">
         <td><%= usage.user_id %></td>
         <td><%= usage.unit_consumed %></td>
-        <td><%= usage&.feature.max_unit_limit %></td>
-        <td>
-          <% if usage.unit_consumed > usage.feature.max_unit_limit %>
-            <%=usage.unit_consumed - usage.feature.max_unit_limit%>
-          <%end%>
-        </td>
-        <td><%= usage.feature.plan_id %></td>
+        <% plans = usage&.subscribe.plan %>
+
+        <% plans.features.each do |feature|  %>
+          <td><%= feature.max_unit_limit%> </td>
+          <td>
+            <% if usage.unit_consumed > feature.max_unit_limit %>
+              <%=usage.unit_consumed - feature.max_unit_limit%>
+            <%end%>
+          </td>
+        <% end %>
+
+        <td><%= plans.id %></td>
+
         <td><%= link_to 'Show Features', usage, class:"btn btn-outline-dark btn-sm" %></td>
         <td><%= link_to 'Edit', edit_usage_path(usage), class:"btn btn-outline-dark btn-sm"  %></td>
     <% end %>

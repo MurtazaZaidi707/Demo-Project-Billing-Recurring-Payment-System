@@ -3,7 +3,7 @@
 class InvoicesController < ApplicationController
 
   def index
-    @invoices = current_user.invoices.includes(:usage)
+    @invoices = current_user.invoices
   end
 
   def new
@@ -19,7 +19,7 @@ class InvoicesController < ApplicationController
     @invoice.user_id = current_user.id
 
     if @invoice.save
-      redirect_to new_payment_path(subscribe_id: @invoice.subscribe.id, billing_date: @invoice.subscribe.billing_date)
+      redirect_to new_payment_path(invoice_id: @invoice, subscribe_id: @invoice.subscribe.id, billing_date: @invoice.subscribe.billing_date)
     else
       render :new, status: :unprocessable_entity
     end
@@ -28,6 +28,6 @@ class InvoicesController < ApplicationController
   private
 
   def invoice_params
-    params.require(:invoice).permit(:subscribe_id, :usage_id, :total_amount)
+    params.require(:invoice).permit(:subscribe_id, :total_amount)
   end
 end

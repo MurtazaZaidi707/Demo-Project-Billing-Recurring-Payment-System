@@ -55,37 +55,10 @@
     <% end %>
 
 <% if current_user&.type == 'Admin' %>
-  <%= debug @feature.errors.full_messages.join(' - ') %>
-  <%= form_with model: [ @plan, @feature ] do |form| %>
-    <% if @feature.present? && @object&.errors&.any? %>
-      <%= render 'shared/errors' %>
-    <% end %>
     <p>
-      <%= form.label :name, { class: "form-label"} %><br>
-      <%= form.text_field :name, { class: "form-control", placeholder: "name" } %>
-    </p>
-    <p>
-      <%= form.label :code, { class: "form-label"} %><br>
-      <%= form.text_area :code, { class: "form-control", placeholder: "code" } %>
-    </p>
-    <p>
-      <%= form.label :unit_price, { class: "form-label"} %><br>
-      <%= form.text_area :unit_price, { class: "form-control", placeholder: "unit_price" } %>
-    </p>
-    <p>
-      <%= form.label :max_unit_limit, { class: "form-label"} %><br>
-      <%= form.text_area :max_unit_limit, { class: "form-control", placeholder: "max_unit_limit" } %>
-    </p>
-    <p>
-      <%= form.label :plan_id, { class: "form-label"} %><br>
-      <%= form.text_area :plan_id, { class: "form-control", placeholder: "plan_id" } %>
-    </p>
-    <p>
-      <button type="submit" class="btn btn-dark">Save</button> |
       <%= link_to 'Edit Plan', edit_plan_path(@plan), class:"btn btn-dark" %>
     </p>
     <br>
-  <% end %>
 <% end %>
 
 <div>

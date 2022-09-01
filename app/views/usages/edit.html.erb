@@ -18,14 +18,9 @@
   </div>
 
   <div class="field">
-    <%= form.label :user_id, { class: "form-label"} %>
-    <%= form.text_field :user_id, value: current_user.id %>
+    <%= form.hidden_field :user_id, value: current_user.id %>
   </div>
 
-  <div class="field">
-    <%= form.label :feature_id, { class: "form-label"} %>
-    <%= form.text_field :feature_id, value: @usage.feature_id %>
-  </div>
   <br>
     <p>
       <button type="submit" class="btn btn-dark">Save</button>

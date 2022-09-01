@@ -7,7 +7,7 @@
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="conatiner feild form-group">
+  <div class="conatiner field form-group mb-3">
     <%= f.label :email, { class: "form-label"} %><br />
     <%= f.email_field :email, class:"form-control", placeholder: "Email", autofocus: true, autocomplete: "email" %>
   </div>
@@ -16,21 +16,20 @@
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
 
-  <div class="feild form-group">
+  <div class="field form-group mb-3">
     <%= f.label :password, { class: "form-label"} %> <i>(leave blank if you don't want to change it)</i><br />
     <%= f.password_field :password, class:"form-control", placeholder: "Password", autocomplete: "new-password" %>
     <% if @minimum_password_length %>
-      <br />
       <em><%= @minimum_password_length %> characters minimum</em>
     <% end %>
   </div>
 
-  <div class="feild form-group">
+  <div class="field form-group mb-3">
     <%= f.label :password_confirmation, { class: "form-label"} %><br />
     <%= f.password_field :password_confirmation,class:"form-control", placeholder: "Confirm Password", autocomplete: "new-password" %>
   </div>
 
-  <div class="feild form-group">
+  <div class="field form-group mb-3">
     <%= f.label :current_password, { class: "form-label"} %> <i>(we need your current password to confirm your changes)</i><br />
     <%= f.password_field :current_password, class:"form-control", placeholder: "Current Password", autocomplete: "current-password" %>
   </div>
