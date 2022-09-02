@@ -14,7 +14,7 @@ class Plan < ApplicationRecord
 
   def has_values?
     attributes['features_attributes']&.any? do |a|
-        a['name'].present? || a['code'].present?
+      a['name'].present? || a['code'].present?
     end
   end
 end

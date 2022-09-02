@@ -4,7 +4,11 @@ class UsagesController < ApplicationController
   before_action :set_usage, only: %i[show edit update destroy]
 
   def index
-    @usages = Usage.all
+    @usages = if current_user.type == 'Admin'
+                Usage.all
+              else
+                current_user.usages
+              end
   end
 
   def show; end

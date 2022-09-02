@@ -12,8 +12,13 @@
 
   <body>
     <%= render 'shared/header' %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <% if notice %>
+      <p class="class= alert alert-dark notice"><%= notice %></p>
+    <%end%>
+    <% if alert %>
+      <p class="alert alert-danger alert"><%= alert %></p>
+    <%end%>
+    <br>
     <%= yield %>
   </body>
 </html>

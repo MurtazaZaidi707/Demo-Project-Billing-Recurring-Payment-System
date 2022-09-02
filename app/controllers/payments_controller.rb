@@ -6,7 +6,8 @@ class PaymentsController < ApplicationController
   end
 
   def new
-    @payment = Payment.new(invoice_id: params[:invoice_id], transaction_date: params[:billing_date], subscribe_id: params[:subscribe_id])
+    @payment = Payment.new(invoice_id: params[:invoice_id], transaction_date: params[:billing_date],
+                           subscribe_id: params[:subscribe_id])
   end
 
   def create

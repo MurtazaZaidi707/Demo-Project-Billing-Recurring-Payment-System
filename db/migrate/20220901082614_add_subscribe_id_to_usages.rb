@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddSubscribeIdToUsages < ActiveRecord::Migration[6.1]
   def change
     add_column :usages, :subscribe_id, :integer

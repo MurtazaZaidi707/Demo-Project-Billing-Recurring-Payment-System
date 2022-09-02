@@ -9,8 +9,8 @@ Rails.application.routes.draw do
   resources :usages
 
   resources :payments do
-      get :usage
-      post :usage
+    get :usage
+    post :usage
   end
 
   resources :plans do
@@ -24,6 +24,6 @@ Rails.application.routes.draw do
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   devise_scope :user do
-    root to: "devise/sessions#new"
+    root to: 'devise/sessions#new'
   end
 end

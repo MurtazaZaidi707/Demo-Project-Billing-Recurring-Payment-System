@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class InvoicesController < ApplicationController
-
   def index
     @invoices = current_user.invoices
   end
@@ -19,7 +18,8 @@ class InvoicesController < ApplicationController
     @invoice.user_id = current_user.id
 
     if @invoice.save
-      redirect_to new_payment_path(invoice_id: @invoice, subscribe_id: @invoice.subscribe.id, billing_date: @invoice.subscribe.billing_date)
+      redirect_to new_payment_path(invoice_id: @invoice, subscribe_id: @invoice.subscribe.id,
+                                   billing_date: @invoice.subscribe.billing_date)
     else
       render :new, status: :unprocessable_entity
     end
