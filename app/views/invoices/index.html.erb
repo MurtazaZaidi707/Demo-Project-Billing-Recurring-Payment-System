@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+
 <div class="container">
   <h1>Invoices</h1>
 </div>
@@ -14,14 +14,14 @@
   </thead>
 
   <tbody id="invoicesTable w-30">
-  <tbody id="invoicesTable w-30">
     <% @invoices.each do |invoice| %>
       <tr id="planRow_<%= invoice.id %>">
         <td><%= invoice.user_id %></td>
         <td><%= invoice.subscribe.plan.id %></td>
         <td><%= invoice.subscribe.plan.name %></td>
         <td><%= invoice.subscribe.billing_date  %></td>
-        <td><%= link_to 'Generate Invoice', invoice, class:"btn btn-outline-dark btn-sm" %></td>
+        <td><%= link_to 'Generate Invoice', invoice, class: "btn btn-outline-dark btn-sm" %></td>
+        <td><%= button_to 'Pay Now',checkout_create_path, params: {id: invoice.id}, remote: true %></td>
         </tr>
     <% end %>
   </tbody>

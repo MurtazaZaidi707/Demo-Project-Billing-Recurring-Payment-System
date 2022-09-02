@@ -26,4 +26,6 @@ Rails.application.routes.draw do
   devise_scope :user do
     root to: 'devise/sessions#new'
   end
+
+  post "checkout/create", to: "checkout#create"
 end

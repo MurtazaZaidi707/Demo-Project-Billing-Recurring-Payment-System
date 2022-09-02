@@ -44,6 +44,6 @@ class UsagesController < ApplicationController
   end
 
   def usage_params
-    params.require(:usage).permit(:unit_consumed, :total_units, :user_id, :feature_id)
+    params.require(:usage).permit(:unit_consumed, :user_id, :feature_id)
   end
 end

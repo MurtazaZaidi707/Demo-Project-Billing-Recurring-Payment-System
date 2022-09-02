@@ -16,10 +16,6 @@
     <%= form.hidden_field :subscribe_id, value: @invoice.subscribe_id %>
   </div>
 
-  <div class="field">
-    <%= form.hidden_field :user_id, value: current_user.id %>
-  </div>
-
   <% invoice = @invoice.subscribe.plan.features %>
 
 

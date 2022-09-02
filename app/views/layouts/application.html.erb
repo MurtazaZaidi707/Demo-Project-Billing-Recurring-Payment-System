@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <script src="https://js.stripe.com/v3/"></script>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -13,7 +13,7 @@
   <body>
     <%= render 'shared/header' %>
     <% if notice %>
-      <p class="class= alert alert-dark notice"><%= notice %></p>
+      <p class="alert alert-success notice"><%= notice %></p>
     <%end%>
     <% if alert %>
       <p class="alert alert-danger alert"><%= alert %></p>

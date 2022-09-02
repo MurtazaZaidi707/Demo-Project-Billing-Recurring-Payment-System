@@ -52,7 +52,8 @@
             <div class="card-body">
                 <p>
                   <strong>Total Amount:</strong>
-                  <td><%= invoice.unit_consumed * feature.unit_price %></td>
+                  <% @invoice.total_amount = invoice.unit_consumed * feature.unit_price %>
+                  <td><%= @invoice.total_amount %></td>
                 </p>
             </div>
             <div class="card-body">
