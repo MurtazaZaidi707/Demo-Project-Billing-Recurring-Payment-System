@@ -61,5 +61,4 @@ class PlansController < ApplicationController
   def not_destroyed(err)
     render json: { errors: err.record.errors }, status: :unprocessable_entity
   end
-
 end

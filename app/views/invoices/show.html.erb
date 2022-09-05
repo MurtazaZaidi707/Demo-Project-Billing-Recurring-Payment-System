@@ -4,7 +4,7 @@
   <div class="card-group">
         <div class="card text-dark bg-light mb-3">
         <% invoice = @invoice.payment.usage %>
-        <% @invoice.subscribe.plan.features do |feature| %>
+        <% @invoice.subscribe.plan.features.each do |feature| %>
           <div class="card-header">
               <p>
                 <strong>Name:</strong>
@@ -46,16 +46,16 @@
                 <td><%= @invoice.subscribe.billing_date  %></td>
               </p>
           </div>
+          <div class="card-body">
+                <p>
+                  <strong>Total Amount:</strong>
+                  <td><%= @invoice.total_amount %></td>
+                </p>
+          </div>
           <% plans = invoice&.subscribe.plan %>
 
           <% plans.features.each do |feature|  %>
-            <div class="card-body">
-                <p>
-                  <strong>Total Amount:</strong>
-                  <% @invoice.total_amount = invoice.unit_consumed * feature.unit_price %>
-                  <td><%= @invoice.total_amount %></td>
-                </p>
-            </div>
+
             <div class="card-body">
                 <p>
                   <% if invoice.unit_consumed > feature.max_unit_limit %>
@@ -76,4 +76,6 @@
 
         </div>
       </div>
+      <td><%= button_to 'Pay Now',checkout_create_path, params: {id: @invoice.id}, class: "btn btn-dark" , remote: true %></td>
+      <br>
 </div>

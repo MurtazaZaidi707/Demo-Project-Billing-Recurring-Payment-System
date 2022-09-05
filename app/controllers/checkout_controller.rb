@@ -6,7 +6,7 @@ class CheckoutController < ApplicationController
       payment_method_types: ['card'],
       line_items: [{
         price_data: {
-          unit_amount: 100,
+          unit_amount: invoice.total_amount,
           currency: "usd",
           product_data: {
             name: plan.name,

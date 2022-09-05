@@ -21,7 +21,6 @@
         <td><%= invoice.subscribe.plan.name %></td>
         <td><%= invoice.subscribe.billing_date  %></td>
         <td><%= link_to 'Generate Invoice', invoice, class: "btn btn-outline-dark btn-sm" %></td>
-        <td><%= button_to 'Pay Now',checkout_create_path, params: {id: invoice.id}, remote: true %></td>
         </tr>
     <% end %>
   </tbody>

@@ -11,6 +11,12 @@ class InvoicesController < ApplicationController
 
   def show
     @invoice = Invoice.find(params[:id])
+
+    usage = @invoice.payment.usage
+    @invoice.subscribe.plan.features.each do |feature|
+      @invoice.total_amount = usage.unit_consumed * feature.unit_price
+    end
+    @invoice.save
   end
 
   def create
