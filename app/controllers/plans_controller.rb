@@ -2,6 +2,7 @@
 
 class PlansController < ApplicationController
   before_action :set_plan, only: %i[show edit update destroy]
+  rescue_from ActiveRecord::RecordNotDestroyed, with: :not_destroyed
 
   def index
     @plans = Plan.all
@@ -56,4 +57,9 @@ class PlansController < ApplicationController
     params.require(:plan).permit(:monthly_fee, :name,
                                  features_attributes: %i[id name code unit_price max_unit_limit _destroy])
   end
+
+  def not_destroyed(err)
+    render json: { errors: err.record.errors }, status: :unprocessable_entity
+  end
+
 end

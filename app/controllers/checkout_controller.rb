@@ -1,7 +1,7 @@
 class CheckoutController < ApplicationController
   def create
-    #invoice = Invoice.find(params[:id])
-    #plan = invoice.subscribe.plan
+    invoice = Invoice.find(params[:id])
+    plan = invoice.subscribe.plan
     @session = Stripe::Checkout::Session.create({
       payment_method_types: ['card'],
       line_items: [{
@@ -9,9 +9,7 @@ class CheckoutController < ApplicationController
           unit_amount: 100,
           currency: "usd",
           product_data: {
-            name: 'T-shirt',
-            description: 'Comfortable cotton t-shirt',
-            images: ['https://example.com/t-shirt.png'],
+            name: plan.name,
           }
         },
       quantity: 1,
