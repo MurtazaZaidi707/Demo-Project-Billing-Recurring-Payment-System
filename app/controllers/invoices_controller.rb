@@ -15,7 +15,13 @@ class InvoicesController < ApplicationController
     usage = @invoice.payment.usage
     @invoice.subscribe.plan.features.each do |feature|
       @invoice.total_amount = usage.unit_consumed * feature.unit_price
+
+      if usage.unit_consumed > feature.max_unit_limit
+        @exceeded_units = usage.unit_consumed - feature.max_unit_limit
+        @exceeded_amount = @exceeded_units * feature.unit_price
+      end
     end
+
     @invoice.save
   end
 

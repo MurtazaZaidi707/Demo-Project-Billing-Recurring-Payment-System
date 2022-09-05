@@ -52,28 +52,20 @@
                   <td><%= @invoice.total_amount %></td>
                 </p>
           </div>
-          <% plans = invoice&.subscribe.plan %>
-
-          <% plans.features.each do |feature|  %>
-
+          <% if ! @exceeded_units.blank? %>
+            <div class="card-body">
+                  <p>
+                    <strong>Exceeded Units:</strong>
+                    <%= @exceeded_units %>
+                  </p>
+            </div>
             <div class="card-body">
                 <p>
-                  <% if invoice.unit_consumed > feature.max_unit_limit %>
-                      <strong>Exceeded_Units:</strong>
-                      <%= invoice.unit_consumed - feature.max_unit_limit %>
-                  <%end%>
+                  <strong>Exceeded Amount:</strong>
+                  <%= @exceeded_amount %>
                 </p>
             </div>
-            <div class="card-body">
-              <p>
-                <% if invoice.unit_consumed > feature.max_unit_limit %>
-                    <strong>Exceeded_Units_Amount:</strong>
-                    <%= (invoice.unit_consumed - feature.max_unit_limit) * feature.unit_price %>
-                <%end%>
-              </p>
-            </div>
-          <% end %>
-
+          <%end%>
         </div>
       </div>
       <td><%= button_to 'Pay Now',checkout_create_path, params: {id: @invoice.id}, class: "btn btn-dark" , remote: true %></td>
