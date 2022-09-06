@@ -12,6 +12,8 @@ class Plan < ApplicationRecord
   has_many :users
   has_many :users, through: :subscribes
 
+  paginates_per 10
+
   def has_values?
     attributes['features_attributes']&.any? do |a|
       a['name'].present? || a['code'].present?

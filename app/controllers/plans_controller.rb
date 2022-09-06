@@ -5,7 +5,7 @@ class PlansController < ApplicationController
   rescue_from ActiveRecord::RecordNotDestroyed, with: :not_destroyed
 
   def index
-    @plans = Plan.all
+    @plans = Plan.page params[:page]
   end
 
   def new

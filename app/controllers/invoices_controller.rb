@@ -10,7 +10,7 @@ class InvoicesController < ApplicationController
   end
 
   def show
-    @invoice = Invoice.find(params[:id])
+    @invoice = current_user.invoices.find(params[:id])
 
     usage = @invoice.payment.usage
     @invoice.subscribe.plan.features.each do |feature|
