@@ -1,11 +1,10 @@
 class BillingMailJob < ApplicationJob
   queue_as :default
 
-  def perform(subscribe)
-    subscribe.each do |date|
-      if date.billing_date.day == Date.today.day
-        UserMailer.billing(date.user).deliver_now
-      end
+  def perform(subscription_ids)
+    subscription_ids.each do |sub_id|
+      subsc = Subscribe.find(sub_id)
+      UserMailer.billing(subsc.user).deliver_now # if subsc.billing_date.day == Date.today.day
     end
   end
 end

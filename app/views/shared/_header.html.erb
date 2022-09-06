@@ -1,8 +1,4 @@
-<% if current_user&.type == 'Admin' %>
-  <nav class="navbar navbar-expand-lg bg-light">
-<% elsif  %>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-<% end %>
+<nav class="navbar navbar-expand-lg <%= current_user&.has_role?('buyer') ? 'navbar-dark bg-dark' : 'bg-light' %>">
 
   <div class="container-fluid">
 
@@ -19,13 +15,13 @@
             <%= link_to 'Plans', plans_path, class: "navbar-brand" %>
           </li>
 
-          <% if current_user&.type == 'Admin' %>
+          <% if current_user&.has_role? :admin %>
             <li class="nav-item">
             <%= link_to 'Buyers Accounts', subscribes_path , class: "navbar-brand" %>
             <%= link_to 'Buyers Usages', usages_path , class: "navbar-brand" %>
             </li>
 
-          <% elsif current_user&.type == 'Buyer' %>
+          <% elsif current_user&.has_role? :buyer%>
             <li class="nav-item">
               <%= link_to 'Transactions', payments_path , class: "navbar-brand" %>
               <%= link_to 'Invoices', invoices_path , class: "navbar-brand" %>
@@ -34,7 +30,7 @@
           <% end %>
 
           <li class="navbar-text ">
-                Current User: <%= current_user.type %>
+                Current User: <%= current_user.roles.pluck(:name) %>
           </li>
         <% else %>
           <li class="nav-item">
