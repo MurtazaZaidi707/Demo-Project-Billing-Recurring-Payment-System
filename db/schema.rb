@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_220_907_090_817) do
+ActiveRecord::Schema.define(version: 20_220_907_125_738) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -34,6 +34,8 @@ ActiveRecord::Schema.define(version: 20_220_907_090_817) do
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
     t.string 'status'
+    t.date 'billing_date'
+    t.integer 'unit_consumed'
     t.index ['subscribe_id'], name: 'index_invoices_on_subscribe_id'
     t.index ['user_id'], name: 'index_invoices_on_user_id'
   end

@@ -17,7 +17,7 @@
       <tr id="planRow_<%= invoice.id %>">
         <% subscribe = invoice.subscribe %>
         <td><%= subscribe.plan.name %></td>
-        <td><%= subscribe.billing_date  %></td>
+        <td><%= invoice.billing_date  %></td>
         <td><%= invoice.status  %></td>
         <td><%= link_to 'Generate Invoice', invoice, class: "btn btn-outline-dark btn-sm" %></td>
         </tr>

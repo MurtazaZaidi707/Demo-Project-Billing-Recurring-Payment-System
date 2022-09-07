@@ -12,10 +12,13 @@ class InvoicesController < ApplicationController
   def show
     @invoice = current_user.invoices.find(params[:id])
 
-    usage = @invoice.payment.usage
+    usage = @invoice.subscribe.usage
     @invoice.subscribe.plan.features.each do |feature|
-      @invoice.total_amount = usage.unit_consumed * feature.unit_price
-
+      @invoice.total_amount = if @invoice.status == 'unpaid'
+                                usage.unit_consumed * feature.unit_price
+                              else
+                                @invoice.unit_consumed * feature.unit_price
+                              end
       if usage.unit_consumed > feature.max_unit_limit
         @exceeded_units = usage.unit_consumed - feature.max_unit_limit
         @exceeded_amount = @exceeded_units * feature.unit_price
@@ -40,6 +43,6 @@ class InvoicesController < ApplicationController
   private
 
   def invoice_params
-    params.require(:invoice).permit(:subscribe_id, :total_amount, :status)
+    params.require(:invoice).permit(:subscribe_id, :total_amount, :status, :billing_date)
   end
 end

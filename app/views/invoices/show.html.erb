@@ -3,7 +3,7 @@
   <h2>Features</h2>
   <div class="card-group">
         <div class="card text-dark bg-light mb-3">
-        <% invoice = @invoice.payment.usage %>
+        <% invoice = @invoice.subscribe.usage %>
         <% @invoice.subscribe.plan.features.each do |feature| %>
           <div class="card-header">
               <p>
@@ -37,13 +37,17 @@
           <div class="card-body">
               <p>
                 <strong>Unit Consumed:</strong>
-                  <%= invoice.unit_consumed %>
+                <% if @invoice.status == "unpaid" %>
+                    <%= invoice.unit_consumed %>
+                <% elsif %>
+                    <%= @invoice.unit_consumed %>
+                <% end %>
               </p>
           </div>
           <div class="card-body">
               <p>
                 <strong>Billing Date:</strong>
-                <td><%= @invoice.subscribe.billing_date  %></td>
+                <td><%= @invoice.billing_date  %></td>
               </p>
           </div>
           <div class="card-body">
