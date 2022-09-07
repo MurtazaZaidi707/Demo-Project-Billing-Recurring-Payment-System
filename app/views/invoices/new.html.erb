@@ -16,6 +16,10 @@
     <%= form.hidden_field :subscribe_id, value: @invoice.subscribe_id %>
   </div>
 
+  <div class="field">
+    <%= form.hidden_field :status, value: "unpaid" %>
+  </div>
+
   <% invoice = @invoice.subscribe.plan.features %>
 
 

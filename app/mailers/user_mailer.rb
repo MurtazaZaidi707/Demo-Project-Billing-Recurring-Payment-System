@@ -1,9 +1,10 @@
-class UserMailer < ApplicationMailer
+# frozen_string_literal: true
 
+class UserMailer < ApplicationMailer
   default from: 'notifications@example.com'
 
   def billing(user)
     @user = user
-    mail(to: 'murtaza4707@gmail.com', subject: 'Billing day today')
+    mail(to: user.email, subject: 'Billing day today')
   end
 end

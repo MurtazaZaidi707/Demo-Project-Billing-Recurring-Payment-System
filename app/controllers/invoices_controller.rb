@@ -40,6 +40,6 @@ class InvoicesController < ApplicationController
   private
 
   def invoice_params
-    params.require(:invoice).permit(:subscribe_id, :total_amount)
+    params.require(:invoice).permit(:subscribe_id, :total_amount, :status)
   end
 end

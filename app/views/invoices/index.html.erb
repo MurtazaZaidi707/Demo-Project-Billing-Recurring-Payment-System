@@ -6,20 +6,19 @@
 <table class="container table table-striped shadow-lg">
   <thead>
     <tr>
-      <th>User id</th>
-      <th>Plan id</th>
       <th>Plan Name</th>
       <th>Billing Date</th>
+      <th>Status</th>
     </tr>
   </thead>
 
   <tbody id="invoicesTable w-30">
     <% @invoices.each do |invoice| %>
       <tr id="planRow_<%= invoice.id %>">
-        <td><%= invoice.user_id %></td>
-        <td><%= invoice.subscribe.plan.id %></td>
-        <td><%= invoice.subscribe.plan.name %></td>
-        <td><%= invoice.subscribe.billing_date  %></td>
+        <% subscribe = invoice.subscribe %>
+        <td><%= subscribe.plan.name %></td>
+        <td><%= subscribe.billing_date  %></td>
+        <td><%= invoice.status  %></td>
         <td><%= link_to 'Generate Invoice', invoice, class: "btn btn-outline-dark btn-sm" %></td>
         </tr>
     <% end %>

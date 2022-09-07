@@ -27,5 +27,5 @@ Rails.application.routes.draw do
     root to: 'devise/sessions#new'
   end
 
-  post "checkout/create", to: "checkout#create"
+  post 'checkout/create', to: 'checkout#create'
 end
